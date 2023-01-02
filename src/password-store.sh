@@ -7,6 +7,7 @@ umask "${PASSWORD_STORE_UMASK:-077}"
 set -o pipefail
 
 AGE="${PASSAGE_AGE:-age}"
+PASSAGE="1"
 
 PREFIX="${PASSAGE_DIR:-$HOME/.passage/store}"
 IDENTITIES_FILE="${PASSAGE_IDENTITIES_FILE:-$HOME/.passage/identities}"
@@ -67,6 +68,7 @@ set_age_recipients() {
 	fi
 
 	local current="$PREFIX/$1"
+	current=${current%/}
 	while [[ $current != "$PREFIX" && ! -f $current/.age-recipients ]]; do
 		current="${current%/*}"
 	done
